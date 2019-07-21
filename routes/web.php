@@ -5,5 +5,7 @@ Route::get('/', function () {
 });
 
 Route::resource('questions', 'QuestionController')->only([
-    'index', 'store'
+    'index', 'store', 'show'
 ]);
+
+Route::post('/questions/{id}/answers', 'AnswerController@store');

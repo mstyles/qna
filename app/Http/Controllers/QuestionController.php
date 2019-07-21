@@ -45,4 +45,19 @@ class QuestionController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     * Display the specified Question.
+     *
+     * @param  \App\Question  $question
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Question $question)
+    {
+        $answers = DB::table('answers')
+            ->where('question_id', $question->id)
+            ->orderBy('created_at', 'asc')
+            ->get();
+        return view('question', ['question' => $question, 'answers' => $answers]);
+    }
 }
